@@ -18,7 +18,7 @@ function init() {
     renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(2)
-    //renderer.setClearColor( new THREE.Color(0xFFFFFF) )
+    renderer.setClearColor( new THREE.Color(0x000000))
     document.getElementById("container").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
