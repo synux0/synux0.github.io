@@ -1,5 +1,7 @@
 // import * as THREE from "three"
 // import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
+import * as THREE from "three";
+import { OrbitControls } from "OrbitControls";
 
 //Global elements
 let scene, camera, renderer
@@ -39,7 +41,7 @@ function init() {
     scene.add(camera)
 
     //Camera controls
-    cameraControls = new THREE.OrbitControls(camera, renderer.domElement)
+    cameraControls = new OrbitControls(camera, renderer.domElement)
     cameraControls.enableDamping = true
     cameraControls.enablePan = false
     cameraControls.enableZoom = false

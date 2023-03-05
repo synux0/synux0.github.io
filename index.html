@@ -5,13 +5,21 @@
         <meta charset='utf-8'>
         <title>Threejs App</title>
         <link rel="stylesheet" href="styles/style.css">
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "./lib/threejs/build/three.module.js",
+                    "OrbitControls": "./lib/threejs/examples/jsm/controls/OrbitControls.js"
+                }
+            }
+        </script>
     </head>
     <body>
         <div id="container"></div>
 
         <!-- ThreeJS library scripts -->
-		<script src="lib/three.min_r140.js"></script>
-		<script src="lib/OrbitControls.js"></script>
+		<!-- <script src="lib/three.min_r140.js"></script>
+		<script src="lib/OrbitControls.js"></script> -->
         <script type="module" src="js/test.js"></script>
     </body>
 </html>
