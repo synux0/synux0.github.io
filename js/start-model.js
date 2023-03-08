@@ -17,7 +17,6 @@ function init() {
     renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(2)
-    renderer.shadowMap.enabled = true
     document.getElementById("webgl-start-model").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
@@ -31,59 +30,41 @@ function init() {
 
     //Scene
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x808080);
+    scene.background = new THREE.Color(0x000000);
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
-    camera.position.set(0, 2, 20);
+    camera.position.set(0, 0, 20);
+    camera.lookAt(new THREE.Vector3(0, 0, 1))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
     cameraControls.enableDamping = true
-    cameraControls.enablePan = false
-    cameraControls.enableZoom = false
-    cameraControls.autoRotate = true
-    cameraControls.autoRotateSpeed = 3
+    cameraControls.enabled = false
 }
 
 function load() {
     //Sphere object
-    let sphereGeometry = new THREE.SphereGeometry(3, 64, 64)
+    let sphereGeometry = new THREE.SphereGeometry(6, 64, 64)
     let sphereMaterial = new THREE.MeshStandardMaterial({
-        color: "#00ff83"
+        color: "#AB12BF"
     })
     sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    sphereMesh.position.set(0, 3, 0)
-    sphereMesh.castShadow = true
+    sphereMesh.position.set(0, 0, 0)
     scene.add(sphereMesh)
 
-    // Ground
-    let groundGeometry = new THREE.PlaneGeometry(40,40,10,10)
-    let groundMaterial = new THREE.MeshStandardMaterial({
-        color: 'grey'
-    });
-    let groundMesh = new THREE.Mesh(groundGeometry, groundMaterial)
-    groundMesh.rotation.x = -Math.PI / 2
-    groundMesh.receiveShadow = true
-    scene.add(groundMesh)
-
     //Lights
-    let ambientLight = new THREE.AmbientLight(0xffffff, 0.2)
-    scene.add(ambientLight)
 
     let spotLight = new THREE.SpotLight(0xffffff, 0.5)
-    spotLight.position.set(-10, 10, 0)
-    spotLight.castShadow = true
-    spotLight.penumbra = 0.3
+    spotLight.position.set(0, 20, -10)
     scene.add(spotLight)
-
-    //Axes
-    scene.add(new THREE.AxesHelper(20))
 }
 
 function update() {
-    // Cambios para actualizar la camara segun mvto del raton
+    let quaternion = new THREE.Quaternion
+    camera.position.applyQuaternion(quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 200))
+    camera.up.applyQuaternion(quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 200))
     cameraControls.update()
 }
 
