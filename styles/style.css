@@ -1,6 +1,39 @@
 body {
-    /* background-color: #000000; */
+    background-color: black;
+
+    color: white;
+    font-family: sans-serif;
+
     margin: 0em;
     padding:0em;
     overflow: hidden;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2em 4em;
+
+    /* background: rgba(0, 0, 0, 0.3); */
+}
+
+#title {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+#subtitle {
+    position: absolute;
+    bottom: 2em;
+
+    font-size: 1.5em;
+}
+
+.webgl {
+    /* position: absolute;
+    top: 0%; */
+    z-index: -1;
 }

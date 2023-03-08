@@ -3,7 +3,7 @@
 <html lang="ca">
     <head>
         <meta charset='utf-8'>
-        <title>Threejs App</title>
+        <title>Axiom Electronics</title>
         <link rel="stylesheet" href="styles/style.css">
         <script type="importmap">
             {
@@ -15,11 +15,13 @@
         </script>
     </head>
     <body>
-        <div id="container"></div>
+        <div class="menu">
+            <a id="title" href="/index.html">Axiom Electronics</a>
+            <h1 id="subtitle">Innovation beyond Imagination</h1>
+        </div>
+        <div class="webgl" id="container"></div>
 
-        <!-- ThreeJS library scripts -->
-		<!-- <script src="lib/three.min_r140.js"></script>
-		<script src="lib/OrbitControls.js"></script> -->
-        <script type="module" src="js/test.js"></script>
+
+        <script type="module" src="js/home-model.js"></script>
     </body>
 </html>
