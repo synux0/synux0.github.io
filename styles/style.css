@@ -6,16 +6,23 @@ body {
 
     margin: 0em;
     padding:0em;
-    overflow: hidden;
+
+    /* overflow: hidden; */
 }
 
-.menu {
+#start {
+    display: flex;
+    flex-direction: column;
+}
+
+#menu {
     display: flex;
     flex-direction: column;
 
     padding: 2em 4em;
+    z-index: 1;
 
-    /* background: rgba(0, 0, 0, 0.3); */
+    background: rgba(0, 0, 0, 0.3);
 }
 
 #title {
@@ -32,8 +39,17 @@ body {
     font-size: 1.5em;
 }
 
-.webgl {
-    /* position: absolute;
-    top: 0%; */
-    z-index: -1;
+#webgl-start-model {
+    margin-top: -103px;
 }
+
+.product-container {
+    margin-top: 2em;
+}
+
+.product-title {
+    padding-left: 4em;
+
+    font-size: 1.5em;
+}
+

@@ -18,7 +18,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(2)
     renderer.shadowMap.enabled = true
-    document.getElementById("container").appendChild(renderer.domElement)
+    document.getElementById("webgl-start-model").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
         //Update renderer
@@ -42,7 +42,7 @@ function init() {
     cameraControls = new OrbitControls(camera, renderer.domElement)
     cameraControls.enableDamping = true
     cameraControls.enablePan = false
-    cameraControls.enableZoom = true
+    cameraControls.enableZoom = false
     cameraControls.autoRotate = true
     cameraControls.autoRotateSpeed = 3
 }
