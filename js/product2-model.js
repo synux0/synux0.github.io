@@ -18,7 +18,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(2)
     renderer.shadowMap.enabled = true
-    document.getElementById("webgl-start-model").appendChild(renderer.domElement)
+    document.getElementById("webgl-product2-model").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
         //Update renderer

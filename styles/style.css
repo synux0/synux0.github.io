@@ -13,6 +13,8 @@ body {
 #start {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #menu {
@@ -39,17 +41,26 @@ body {
     font-size: 1.5em;
 }
 
-#webgl-start-model {
-    margin-top: -103px;
+.webgl {
+    position: absolute;
+    top: 0;
 }
 
 .product-container {
-    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.product-title-container {
+    padding: 2em 4em;
+    z-index: 1;
+
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .product-title {
-    padding-left: 4em;
-
     font-size: 1.5em;
 }
-
