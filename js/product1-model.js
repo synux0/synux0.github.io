@@ -5,8 +5,10 @@ import {GLTFLoader} from "GLTFLoader"
 //Global elements
 let scene, camera, renderer
 let cameraControls
+let gltfLoader = new GLTFLoader()
 
 //Objects
+let laptop = new THREE.Object3D()
 
 init()
 load()
@@ -44,17 +46,16 @@ function init() {
     cameraControls.target.set(0, 1.2, 0)
     cameraControls.enabled = false
     cameraControls.enableDamping = true
-    cameraControls.autoRotate = true
+    cameraControls.autoRotate = false
     cameraControls.autoRotateSpeed = 2
 }
 
 function load() {
     //Laptop
-    let gltfLoader = new GLTFLoader()
     gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
-        gltf.scene.position.y = 0
-        gltf.scene.rotation.y = - Math.PI / 2
-        scene.add(gltf.scene)
+        laptop = gltf.scene
+        laptop.rotation.y = - Math.PI / 2
+        scene.add(laptop)
     }, undefined, function (error) {
         console.error(error)
     })
@@ -77,8 +78,8 @@ function load() {
 }
 
 function update() {
-    // Cambios para actualizar la camara segun mvto del raton
     cameraControls.update()
+    laptop.rotation.y += 0.003
 }
 
 function render() {
