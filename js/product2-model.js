@@ -60,6 +60,16 @@ function load() {
         console.error(error)
     })
 
+    //Wall
+    let wallGeometry = new THREE.PlaneGeometry(20, 20, 10, 10)
+    let wallMaterial = new THREE.MeshStandardMaterial({
+        color: "black"
+    })
+    let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
+    wallMesh.position.y = -0.5
+    wallMesh.position.z = -10
+    scene.add(wallMesh)
+
     //Lights
     let ambientLight = new THREE.AmbientLight(0xffffff, 1)
     scene.add(ambientLight)
@@ -75,6 +85,12 @@ function load() {
     let directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.5)
     directionalLight3.position.set(0, 2, 10)
     scene.add(directionalLight3)
+
+    let spotLight = new THREE.SpotLight(0xab12bf, 10)
+    spotLight.position.set(0, -0.5, -7)
+    spotLight.target = wallMesh
+    spotLight.penumbra = 0.5
+    scene.add(spotLight)
 }
 
 function update() {

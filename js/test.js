@@ -61,7 +61,7 @@ function load() {
     // Ground
     let groundGeometry = new THREE.PlaneGeometry(40,40,10,10)
     let groundMaterial = new THREE.MeshStandardMaterial({
-        color: 'grey'
+        color: "grey"
     });
     let groundMesh = new THREE.Mesh(groundGeometry, groundMaterial)
     groundMesh.rotation.x = -Math.PI / 2

@@ -51,16 +51,26 @@ function init() {
 }
 
 function load() {
-    //Laptop
+    //Desktop
     let gltfLoader = new GLTFLoader()
     gltfLoader.load("../models/gaming_desktop/scene.gltf", function (gltf) {
         desktop = gltf.scene
-        desktop.position.x = 1.5
+        desktop.position.x = 2
         desktop.rotation.y = - Math.PI / 2
         scene.add(desktop)
     }, undefined, function (error) {
         console.error(error)
     })
+
+    //Wall
+    let wallGeometry = new THREE.PlaneGeometry(50, 50, 10, 10)
+    let wallMaterial = new THREE.MeshStandardMaterial({
+        color: "black"
+    })
+    let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
+    wallMesh.position.y = -1.5
+    wallMesh.position.z = -15
+    scene.add(wallMesh)
 
     //Lights
     let ambientLight = new THREE.AmbientLight(0xffffff, 1)
@@ -77,6 +87,12 @@ function load() {
     let directionalLight3 = new THREE.DirectionalLight(0xffffff, 1)
     directionalLight3.position.set(0, 0, 10)
     scene.add(directionalLight3)
+
+    let spotLight = new THREE.SpotLight(0xab12bf, 10)
+    spotLight.position.set(1.5, -1.5, -7)
+    spotLight.target = wallMesh
+    spotLight.penumbra = 0.5
+    scene.add(spotLight)
 }
 
 function update() {
