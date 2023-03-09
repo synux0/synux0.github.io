@@ -17,14 +17,9 @@ body {
     overflow: hidden;
 }
 
-#menu {
-    display: flex;
-    flex-direction: column;
-
-    padding: 2em 4em;
+#title-container {
+    padding: 4em 4em;
     z-index: 1;
-
-    background: rgba(0, 0, 0, 0.3);
 }
 
 #title {
@@ -34,16 +29,39 @@ body {
     font-size: 2em;
 }
 
-#subtitle {
-    position: absolute;
-    bottom: 2em;
+#subtitle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-    font-size: 1.5em;
+    position: absolute;
+    top: 41%;
+
+    width: 100%;
+    z-index: 1;
 }
 
-.webgl {
-    position: absolute;
-    top: 0;
+.subtitle {
+    font-size: 1.5em;
+    /* text-shadow: -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 1px 1px 0px #fff; */
+    color: white;
+}
+
+#subtitle1 {
+    margin-left: 10%;
+    margin-right: 2%;
+}
+
+#subtitle2 {
+    font-size: 1.8em;
+    color: black;
+    text-shadow: -1px -1px 0px #ab12bf, 1px -1px 0px #ab12bf, -1px 1px 0px #ab12bf, 1px 1px 0px #ab12bf;
+}
+
+#subtitle3 {
+    margin-left: 2%;
+    margin-right: 10%;
 }
 
 .product-container {
@@ -63,4 +81,9 @@ body {
 
 .product-title {
     font-size: 1.5em;
+}
+
+.webgl {
+    position: absolute;
+    top: 0;
 }

@@ -48,23 +48,23 @@ function load() {
     //Sphere object
     let sphereGeometry = new THREE.SphereGeometry(6, 64, 64)
     let sphereMaterial = new THREE.MeshStandardMaterial({
-        color: "#AB12BF"
+        color: "#ab12bf"
     })
     sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
     sphereMesh.position.set(0, 0, 0)
     scene.add(sphereMesh)
 
     //Lights
-
-    let spotLight = new THREE.SpotLight(0xffffff, 0.5)
-    spotLight.position.set(0, 20, -10)
-    scene.add(spotLight)
+    let spotLight1 = new THREE.SpotLight(0xffffff, 0.5)
+    spotLight1.position.set(0, 20, -10)
+    scene.add(spotLight1)
 }
 
 function update() {
     let quaternion = new THREE.Quaternion
-    camera.position.applyQuaternion(quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 200))
-    camera.up.applyQuaternion(quaternion.setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 200))
+    let vectorZ = new THREE.Vector3(0, 0, 1)
+    camera.position.applyQuaternion(quaternion.setFromAxisAngle(vectorZ, Math.PI / 200))
+    camera.up.applyQuaternion(quaternion.setFromAxisAngle(vectorZ, Math.PI / 200))
     cameraControls.update()
 }
 
