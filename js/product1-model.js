@@ -59,15 +59,6 @@ function load() {
         console.error(error)
     })
 
-    // Ground
-    let groundGeometry = new THREE.PlaneGeometry(40,40,10,10)
-    let groundMaterial = new THREE.MeshBasicMaterial({
-        color: 'black'
-    });
-    let groundMesh = new THREE.Mesh(groundGeometry, groundMaterial)
-    groundMesh.rotation.x = -Math.PI / 2
-    scene.add(groundMesh)
-
     //Lights
     let ambientLight = new THREE.AmbientLight(0xffffff, 5)
     scene.add(ambientLight)
@@ -76,7 +67,7 @@ function load() {
     directionalLight1.position.set(0, 10, -10)
     scene.add(directionalLight1)
 
-    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 1)
+    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 5)
     directionalLight2.position.set(0, 10, 0)
     scene.add(directionalLight2)
 
