@@ -55,7 +55,7 @@ function load() {
     scene.add(sphereMesh)
 
     //Lights
-    let spotLight1 = new THREE.SpotLight(0xffffff, 0.5)
+    let spotLight1 = new THREE.SpotLight(0xffffff, 1)
     spotLight1.position.set(0, 20, -10)
     scene.add(spotLight1)
 }

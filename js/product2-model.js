@@ -1,5 +1,5 @@
-import * as THREE from "three";
-import { OrbitControls } from "OrbitControls";
+import * as THREE from "three"
+import {OrbitControls} from "OrbitControls"
 
 //Global elements
 let scene, camera, renderer

@@ -76,7 +76,7 @@ body {
     padding: 2em 4em;
     z-index: 1;
 
-    background: rgba(0, 0, 0, 0.3);
+    /* background: rgba(0, 0, 0, 0.3); */
 }
 
 .product-title {
