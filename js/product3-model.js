@@ -35,13 +35,13 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
-    camera.position.set(0, 3, 6);
-    camera.lookAt(new THREE.Vector3(0, 1.2, 0))
+    camera.position.set(0, 5, 15);
+    camera.lookAt(new THREE.Vector3(0, 2, 0))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.target.set(0, 1.2, 0)
+    cameraControls.target.set(0, 2, 0)
     cameraControls.enabled = false
     cameraControls.enableDamping = true
     cameraControls.autoRotate = true
@@ -51,7 +51,8 @@ function init() {
 function load() {
     //Laptop
     let gltfLoader = new GLTFLoader()
-    gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
+    gltfLoader.load("../models/gaming_desktop/scene.gltf", function (gltf) {
+        gltf.scene.position.x = 1.5
         gltf.scene.position.y = 0
         gltf.scene.rotation.y = - Math.PI / 2
         scene.add(gltf.scene)
@@ -60,19 +61,19 @@ function load() {
     })
 
     //Lights
-    let ambientLight = new THREE.AmbientLight(0xffffff, 5)
+    let ambientLight = new THREE.AmbientLight(0xffffff, 1)
     scene.add(ambientLight)
 
     let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1)
     directionalLight1.position.set(0, 10, -10)
     scene.add(directionalLight1)
 
-    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 1)
+    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 10)
     directionalLight2.position.set(0, 10, 0)
     scene.add(directionalLight2)
 
     let directionalLight3 = new THREE.DirectionalLight(0xffffff, 1)
-    directionalLight3.position.set(0, -2, -10)
+    directionalLight3.position.set(0, 0, 10)
     scene.add(directionalLight3)
 }
 
