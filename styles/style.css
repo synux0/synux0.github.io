@@ -56,7 +56,7 @@ body {
 #subtitle2 {
     font-size: 1.8em;
     color: black;
-    text-shadow: -1px -1px 0px #ab12bf, 1px -1px 0px #ab12bf, -1px 1px 0px #ab12bf, 1px 1px 0px #ab12bf;
+    /* text-shadow: -1px -1px 0px #ab12bf, 1px -1px 0px #ab12bf, -1px 1px 0px #ab12bf, 1px 1px 0px #ab12bf; */
 }
 
 #subtitle3 {

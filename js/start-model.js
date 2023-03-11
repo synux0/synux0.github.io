@@ -30,7 +30,7 @@ function init() {
 
     //Scene
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0x030303);
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
@@ -40,24 +40,37 @@ function init() {
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.enableDamping = true
     cameraControls.enabled = false
+    cameraControls.enableDamping = true
+    cameraControls.autoRotate = false
+    cameraControls.autoRotateSpeed = 2
 }
 
 function load() {
-    //Sphere object
+    //Sphere
     let sphereGeometry = new THREE.SphereGeometry(6, 64, 64)
     let sphereMaterial = new THREE.MeshStandardMaterial({
-        color: "#ab12bf"
+        // color: "#ab12bf"
+        color: "0x030303"
     })
     sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
     sphereMesh.position.set(0, 0, 0)
     scene.add(sphereMesh)
 
     //Lights
-    let spotLight1 = new THREE.SpotLight(0xffffff, 1)
+    let ambientLight = new THREE.AmbientLight(0x030303, 1)
+    scene.add(ambientLight)
+
+    let spotLight1 = new THREE.SpotLight(0xab12bf, 1)
     spotLight1.position.set(0, 20, -10)
+    spotLight1.penumbra = 1
     scene.add(spotLight1)
+
+    let spotLight2 = new THREE.SpotLight(0xab12bf, 2)
+    spotLight2.position.set(0, 0, 7.8)
+    spotLight2.penumbra = 1
+    spotLight2.distance = 10
+    scene.add(spotLight2)
 }
 
 function update() {

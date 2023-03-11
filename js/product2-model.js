@@ -54,7 +54,6 @@ function load() {
     //Laptop
     gltfLoader.load("../models/futuristic_laptop/scene.gltf", function (gltf) {
         laptop = gltf.scene
-        laptop.rotation.y = - Math.PI / 2
         scene.add(laptop)
     }, undefined, function (error) {
         console.error(error)
@@ -82,7 +81,7 @@ function load() {
     scene.add(directionalLight2)
 
     let directionalLight3 = new THREE.DirectionalLight(0xffffff, 1)
-    directionalLight3.position.set(0, 2, 10)
+    directionalLight3.position.set(0, -2, 10)
     scene.add(directionalLight3)
 
     let spotLight = new THREE.SpotLight(0xab12bf, 10)
