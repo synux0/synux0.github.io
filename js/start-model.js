@@ -1,12 +1,9 @@
 import * as THREE from "three";
-import { OrbitControls } from "OrbitControls";
 
 //Global elements
 let scene, camera, renderer
-let cameraControls
 
 //Objects
-let sphereMesh
 
 init()
 load()
@@ -37,13 +34,6 @@ function init() {
     camera.position.set(0, 0, 20);
     camera.lookAt(new THREE.Vector3(0, 0, 5))
     scene.add(camera)
-
-    //Camera controls
-    // cameraControls = new OrbitControls(camera, renderer.domElement)
-    // cameraControls.enabled = false
-    // cameraControls.enableDamping = true
-    // cameraControls.autoRotate = false
-    // cameraControls.autoRotateSpeed = 2
 }
 
 function load() {
@@ -76,7 +66,6 @@ function load() {
 }
 
 function update() {
-    // cameraControls.update()
 }
 
 function render() {
