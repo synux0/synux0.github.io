@@ -37,13 +37,13 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
-    camera.position.set(0, 5, 15);
-    camera.lookAt(new THREE.Vector3(0, 2, 0))
+    camera.position.set(0, 0.2, 1.5);
+    camera.lookAt(new THREE.Vector3(0, 0, 0))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.target.set(0, 2, 0)
+    cameraControls.target.set(0, 0, 0)
     cameraControls.enabled = false
     cameraControls.enableDamping = true
     cameraControls.autoRotate = false
@@ -52,28 +52,25 @@ function init() {
 
 function load() {
     //Desktop
-    let gltfLoader = new GLTFLoader()
     gltfLoader.load("../models/gaming_desktop/scene.gltf", function (gltf) {
         desktop = gltf.scene
-        desktop.position.x = 2
-        desktop.rotation.y = - Math.PI / 2
+        // desktop.rotation.y = - Math.PI / 2
         scene.add(desktop)
     }, undefined, function (error) {
         console.error(error)
     })
 
     //Wall
-    let wallGeometry = new THREE.PlaneGeometry(50, 50, 10, 10)
+    let wallGeometry = new THREE.PlaneGeometry(100, 50, 10, 10)
     let wallMaterial = new THREE.MeshStandardMaterial({
         color: "black"
     })
     let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
-    wallMesh.position.y = -1.5
-    wallMesh.position.z = -15
+    wallMesh.position.set(0, -3, -15)
     scene.add(wallMesh)
 
     //Lights
-    let ambientLight = new THREE.AmbientLight(0xffffff, 1)
+    let ambientLight = new THREE.AmbientLight(0xffffff, 0.1)
     scene.add(ambientLight)
 
     let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1)
@@ -89,7 +86,7 @@ function load() {
     scene.add(directionalLight3)
 
     let spotLight = new THREE.SpotLight(0xab12bf, 10)
-    spotLight.position.set(1.5, -1.5, -7)
+    spotLight.position.set(0, -3, -10)
     spotLight.target = wallMesh
     spotLight.penumbra = 0.5
     scene.add(spotLight)

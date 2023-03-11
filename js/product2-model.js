@@ -8,7 +8,7 @@ let cameraControls
 let gltfLoader = new GLTFLoader()
 
 //Objects
-let terminal = new THREE.Object3D()
+let laptop = new THREE.Object3D()
 
 init()
 load()
@@ -37,13 +37,13 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
-    camera.position.set(0, 0.1, 0.3);
-    camera.lookAt(new THREE.Vector3(0, 0.08, 0))
+    camera.position.set(0, 5, 9);
+    camera.lookAt(new THREE.Vector3(0, 2, 0))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.target.set(0, 0.08, 0)
+    cameraControls.target.set(0, 2, 0)
     cameraControls.enabled = false
     cameraControls.enableDamping = true
     cameraControls.autoRotate = false
@@ -51,43 +51,42 @@ function init() {
 }
 
 function load() {
-    //Terminal
-    gltfLoader.load("../models/sci-fi_terminal/scene.gltf", function (gltf) {
-        terminal = gltf.scene
-        terminal.rotation.y = - Math.PI / 2
-        scene.add(terminal)
+    //Laptop
+    gltfLoader.load("../models/futuristic_laptop/scene.gltf", function (gltf) {
+        laptop = gltf.scene
+        laptop.rotation.y = - Math.PI / 2
+        scene.add(laptop)
     }, undefined, function (error) {
         console.error(error)
     })
 
     //Wall
-    let wallGeometry = new THREE.PlaneGeometry(20, 20, 10, 10)
+    let wallGeometry = new THREE.PlaneGeometry(100, 50, 10, 10)
     let wallMaterial = new THREE.MeshStandardMaterial({
         color: "black"
     })
     let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
-    wallMesh.position.y = -0.5
-    wallMesh.position.z = -10
+    wallMesh.position.set(0, -3, -10)
     scene.add(wallMesh)
 
     //Lights
-    let ambientLight = new THREE.AmbientLight(0xffffff, 1)
+    let ambientLight = new THREE.AmbientLight(0xffffff, 5)
     scene.add(ambientLight)
 
     let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1)
     directionalLight1.position.set(0, 10, -10)
     scene.add(directionalLight1)
 
-    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 1)
+    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 5)
     directionalLight2.position.set(0, 10, 0)
     scene.add(directionalLight2)
 
-    let directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.5)
+    let directionalLight3 = new THREE.DirectionalLight(0xffffff, 1)
     directionalLight3.position.set(0, 2, 10)
     scene.add(directionalLight3)
 
     let spotLight = new THREE.SpotLight(0xab12bf, 10)
-    spotLight.position.set(0, -0.5, -7)
+    spotLight.position.set(0, -3, -4)
     spotLight.target = wallMesh
     spotLight.penumbra = 0.5
     scene.add(spotLight)
@@ -95,7 +94,7 @@ function load() {
 
 function update() {
     cameraControls.update()
-    terminal.rotation.y += 0.003
+    laptop.rotation.y += 0.003
 }
 
 function render() {

@@ -61,13 +61,12 @@ function load() {
     })
 
     //Wall
-    let wallGeometry = new THREE.PlaneGeometry(20, 20, 10, 10)
+    let wallGeometry = new THREE.PlaneGeometry(100, 50, 10, 10)
     let wallMaterial = new THREE.MeshStandardMaterial({
         color: "black"
     })
     let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
-    wallMesh.position.y = -1.5
-    wallMesh.position.z = -6
+    wallMesh.position.set(0, -1.5, -6)
     scene.add(wallMesh)
 
     //Lights
