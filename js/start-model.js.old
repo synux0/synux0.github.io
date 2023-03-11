@@ -30,7 +30,7 @@ function init() {
 
     //Scene
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x000000)
+    scene.background = new THREE.Color(0x000000);
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100)
@@ -39,18 +39,28 @@ function init() {
     scene.add(camera)
 
     //Camera controls
-    // cameraControls = new OrbitControls(camera, renderer.domElement)
-    // cameraControls.enabled = false
-    // cameraControls.enableDamping = true
-    // cameraControls.autoRotate = false
-    // cameraControls.autoRotateSpeed = 2
+    cameraControls = new OrbitControls(camera, renderer.domElement)
+    cameraControls.enabled = false
+    cameraControls.enableDamping = true
+    cameraControls.autoRotate = false
+    cameraControls.autoRotateSpeed = 2
 }
 
 function load() {
+    //Sphere
+    let sphereGeometry = new THREE.SphereGeometry(6, 64, 64)
+    let sphereMaterial = new THREE.MeshStandardMaterial({
+        // color: "#ab12bf"
+        color: "0x030303"
+    })
+    sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    sphereMesh.position.set(0, 0, 0)
+    // scene.add(sphereMesh)
+
     //Wall
     let wallGeometry = new THREE.PlaneGeometry(100, 50, 10, 10)
     let wallMaterial = new THREE.MeshStandardMaterial({
-        color: "white"
+        color: "0x030303"
     })
     let wallMesh = new THREE.Mesh(wallGeometry, wallMaterial)
     wallMesh.position.set(0, 0, 0)
@@ -60,15 +70,13 @@ function load() {
     let ambientLight = new THREE.AmbientLight(0x030303, 1)
     scene.add(ambientLight)
 
-    let spotLight1 = new THREE.SpotLight(0x9400FF, 0.5)
-    spotLight1.position.set(2, -2, 7)
-    spotLight1.target = wallMesh
+    let spotLight1 = new THREE.SpotLight(0xab12bf, 1)
+    spotLight1.position.set(0, 20, -10)
     spotLight1.penumbra = 1
-    spotLight1.distance = 0
-    scene.add(spotLight1)
+    // scene.add(spotLight1)
 
-    let spotLight2 = new THREE.SpotLight(0xFF6A00, 0.5)
-    spotLight2.position.set(-2, -2, 7)
+    let spotLight2 = new THREE.SpotLight(0xab12bf, 1)
+    spotLight2.position.set(0, 0, 5)
     spotLight2.target = wallMesh
     spotLight2.penumbra = 1
     spotLight2.distance = 0
@@ -76,7 +84,11 @@ function load() {
 }
 
 function update() {
-    // cameraControls.update()
+    let quaternion = new THREE.Quaternion
+    let vectorZ = new THREE.Vector3(0, 0, 1)
+    // camera.position.applyQuaternion(quaternion.setFromAxisAngle(vectorZ, Math.PI / 200))
+    // camera.up.applyQuaternion(quaternion.setFromAxisAngle(vectorZ, Math.PI / 200))
+    cameraControls.update()
 }
 
 function render() {
