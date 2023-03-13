@@ -35,18 +35,16 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     position: absolute;
     top: 40%;
-
     width: 100%;
     z-index: 1;
 }
 
 .subtitle {
     font-size: 1.5em;
-    /* text-shadow: -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 1px 1px 0px #fff; */
     color: rgba(255, 255, 255, 1);
+    /* text-shadow: -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff, 1px 1px 0px #fff; */
 }
 
 #subtitle1 {
@@ -71,12 +69,12 @@ body {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .product-title-container {
     padding: 2em 4em;
     z-index: 1;
-
     /* background: rgba(0, 0, 0, 0.3); */
 }
 
