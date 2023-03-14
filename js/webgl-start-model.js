@@ -4,6 +4,10 @@ import * as THREE from "three";
 let scene, camera, renderer
 
 //Objects
+let spotLight1
+let spotLight2
+let spotLight1Increasing = true
+let spotLight2Increasing = false
 
 init()
 load()
@@ -50,14 +54,14 @@ function load() {
     let ambientLight = new THREE.AmbientLight(0x030303, 1)
     scene.add(ambientLight)
 
-    let spotLight1 = new THREE.SpotLight(0x9400FF, 0.5)
+    spotLight1 = new THREE.SpotLight(0x9400FF, 0.5)
     spotLight1.position.set(2, -2, 7)
     spotLight1.target = wallMesh
     spotLight1.penumbra = 1
     spotLight1.distance = 0
     scene.add(spotLight1)
 
-    let spotLight2 = new THREE.SpotLight(0xFF6A00, 0.5)
+    spotLight2 = new THREE.SpotLight(0xFF6A00, 0.5)
     spotLight2.position.set(-2, -2, 7)
     spotLight2.target = wallMesh
     spotLight2.penumbra = 1
@@ -66,6 +70,30 @@ function load() {
 }
 
 function update() {
+
+    if (spotLight1Increasing) {
+        spotLight1.intensity += 0.003
+    } else {
+        spotLight1.intensity -= 0.003
+    }
+
+    if (spotLight2Increasing) {
+        spotLight2.intensity += 0.003
+    } else {
+        spotLight2.intensity -= 0.003
+    }
+    
+    if (spotLight1.intensity > 0.9){
+        spotLight1Increasing = false
+    } else if (spotLight1.intensity < 0.1) {
+        spotLight1Increasing = true
+    }
+
+    if (spotLight2.intensity > 0.9){
+        spotLight2Increasing = false
+    } else if (spotLight2.intensity < 0.1) {
+        spotLight2Increasing = true
+    }
 }
 
 function render() {

@@ -59,7 +59,7 @@ function load() {
     scene.add(sphereMesh)
 
     // Ground
-    let groundGeometry = new THREE.PlaneGeometry(40,40,10,10)
+    let groundGeometry = new THREE.PlaneGeometry(40, 40, 10, 10)
     let groundMaterial = new THREE.MeshStandardMaterial({
         color: "grey"
     });
@@ -88,7 +88,7 @@ function update() {
 }
 
 function render() {
-	window.requestAnimationFrame(render)
-	update()
-	renderer.render(scene, camera)
+    window.requestAnimationFrame(render)
+    update()
+    renderer.render(scene, camera)
 }
