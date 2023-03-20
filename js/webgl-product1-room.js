@@ -37,13 +37,13 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200)
-    camera.position.set(-2, 11, 10);
-    camera.lookAt(new THREE.Vector3(-2, 10, 10))
+    camera.position.set(-8, 10, -3);
+    camera.lookAt(new THREE.Vector3(-8, 10, -11))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.target.set(-2, 10, 10)
+    cameraControls.target.set(-8, 10, -11)
     cameraControls.enabled = true
     cameraControls.enableDamping = true
     cameraControls.enablePan = true
@@ -63,7 +63,7 @@ function load() {
     scene.add(room)
 
     // Floor
-    let floorGeometry = new THREE.BoxGeometry(30, 30, 1, 10, 10)
+    let floorGeometry = new THREE.BoxGeometry(40, 40, 1, 10, 10)
     let floorMaterial = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     });
@@ -72,50 +72,50 @@ function load() {
     room.add(floorMesh)
 
     // Roof
-    let roofGeometry = new THREE.BoxGeometry(30, 30, 1, 10, 10)
+    let roofGeometry = new THREE.BoxGeometry(40, 40, 1, 10, 10)
     let roofMaterial = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     });
     let roofMesh = new THREE.Mesh(roofGeometry, roofMaterial)
     roofMesh.position.set(0, 25, 0)
     roofMesh.rotation.x = -Math.PI / 2
-    room.add(roofMesh)
+    // room.add(roofMesh)
 
     //Wall1
-    let wallGeometry1 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallGeometry1 = new THREE.BoxGeometry(41, 26, 1, 10, 10)
     let wallMaterial1 = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     })
     let wallMesh1 = new THREE.Mesh(wallGeometry1, wallMaterial1)
-    wallMesh1.position.set(0, 12.5, -15)
+    wallMesh1.position.set(0, 12.5, -20)
     room.add(wallMesh1)
 
     //Wall2
-    let wallGeometry2 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallGeometry2 = new THREE.BoxGeometry(41, 26, 1, 10, 10)
     let wallMaterial2 = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     })
     let wallMesh2 = new THREE.Mesh(wallGeometry2, wallMaterial2)
-    wallMesh2.position.set(15, 12.5, 0)
+    wallMesh2.position.set(20, 12.5, 0)
     wallMesh2.rotation.y = Math.PI/2
     room.add(wallMesh2)
 
     //Wall3
-    let wallGeometry3 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallGeometry3 = new THREE.BoxGeometry(41, 26, 1, 10, 10)
     let wallMaterial3 = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     })
     let wallMesh3 = new THREE.Mesh(wallGeometry3, wallMaterial3)
-    wallMesh3.position.set(0, 12.5, 15)
+    wallMesh3.position.set(0, 12.5, 20)
     room.add(wallMesh3)
 
     //Wall4
-    let wallGeometry4 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallGeometry4 = new THREE.BoxGeometry(41, 26, 1, 10, 10)
     let wallMaterial4 = new THREE.MeshStandardMaterial({
         color: "#A4B5BF"
     })
     let wallMesh4 = new THREE.Mesh(wallGeometry4, wallMaterial4)
-    wallMesh4.position.set(-15, 12.5, 0)
+    wallMesh4.position.set(-20, 12.5, 0)
     wallMesh4.rotation.y = Math.PI/2
     room.add(wallMesh4)
 
@@ -146,7 +146,7 @@ function load() {
 
     //DESK
     let desk = new THREE.Object3D()
-    desk.position.set(0, 0, -5)
+    desk.position.set(-6, 0, -11)
     room.add(desk)
 
     //Table
@@ -185,9 +185,9 @@ function load() {
 
     //Desk lights
     let deskSpotLight1 = new THREE.SpotLight(0xffffff, 5)
-    deskSpotLight1.position.set(-2, 20, 0)
+    deskSpotLight1.position.set(-2, 15, 0)
     deskSpotLight1.target = laptop
-    deskSpotLight1.penumbra = 0
+    deskSpotLight1.penumbra = 1
     deskSpotLight1.distance = 20
     desk.add(deskSpotLight1)
 
