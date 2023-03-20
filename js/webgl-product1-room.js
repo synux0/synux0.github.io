@@ -8,10 +8,6 @@ let scene, camera, renderer
 let cameraControls
 let gltfLoader = new GLTFLoader()
 
-//Objects
-let room = new THREE.Object3D()
-let laptop = new THREE.Object3D()
-
 init()
 load()
 render()
@@ -21,7 +17,9 @@ function init() {
     renderer = new THREE.WebGLRenderer()
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(2)
-    renderer.shadowMap.enabled = true
+    renderer.gammaInput = true
+    renderer.gammaOutput = true
+    renderer.shadowMap.enabled = false
     document.getElementById("webgl-product1-room").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
@@ -39,124 +37,173 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200)
-    camera.position.set(0, 3, 20);
-    camera.lookAt(new THREE.Vector3(0, 3, 0))
+    camera.position.set(-2, 11, 10);
+    camera.lookAt(new THREE.Vector3(-2, 10, 10))
     scene.add(camera)
 
     //Camera controls
     cameraControls = new OrbitControls(camera, renderer.domElement)
-    cameraControls.target.set(0, 1.2, 0)
+    cameraControls.target.set(-2, 10, 10)
     cameraControls.enabled = true
     cameraControls.enableDamping = true
+    cameraControls.enablePan = true
     cameraControls.autoRotate = false
     cameraControls.autoRotateSpeed = 2
 }
 
 function load() {
-    //Laptop
-    gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
-        laptop = gltf.scene
-        laptop.rotation.y = - Math.PI / 2
-        laptop.castShadow = true
-        room.add(laptop)
+    //SCENE
+
+    //Scene Lights
+    let sceneAmbientLight = new THREE.AmbientLight(0xffffff, 0.7)
+    scene.add(sceneAmbientLight)
+
+    //ROOM
+    let room = new THREE.Object3D()
+    scene.add(room)
+
+    // Floor
+    let floorGeometry = new THREE.BoxGeometry(30, 30, 1, 10, 10)
+    let floorMaterial = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    });
+    let floorMesh = new THREE.Mesh(floorGeometry, floorMaterial)
+    floorMesh.rotation.x = -Math.PI / 2
+    room.add(floorMesh)
+
+    // Roof
+    let roofGeometry = new THREE.BoxGeometry(30, 30, 1, 10, 10)
+    let roofMaterial = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    });
+    let roofMesh = new THREE.Mesh(roofGeometry, roofMaterial)
+    roofMesh.position.set(0, 25, 0)
+    roofMesh.rotation.x = -Math.PI / 2
+    room.add(roofMesh)
+
+    //Wall1
+    let wallGeometry1 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallMaterial1 = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    })
+    let wallMesh1 = new THREE.Mesh(wallGeometry1, wallMaterial1)
+    wallMesh1.position.set(0, 12.5, -15)
+    room.add(wallMesh1)
+
+    //Wall2
+    let wallGeometry2 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallMaterial2 = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    })
+    let wallMesh2 = new THREE.Mesh(wallGeometry2, wallMaterial2)
+    wallMesh2.position.set(15, 12.5, 0)
+    wallMesh2.rotation.y = Math.PI/2
+    room.add(wallMesh2)
+
+    //Wall3
+    let wallGeometry3 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallMaterial3 = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    })
+    let wallMesh3 = new THREE.Mesh(wallGeometry3, wallMaterial3)
+    wallMesh3.position.set(0, 12.5, 15)
+    room.add(wallMesh3)
+
+    //Wall4
+    let wallGeometry4 = new THREE.BoxGeometry(31, 25, 1, 10, 10)
+    let wallMaterial4 = new THREE.MeshStandardMaterial({
+        color: "#A4B5BF"
+    })
+    let wallMesh4 = new THREE.Mesh(wallGeometry4, wallMaterial4)
+    wallMesh4.position.set(-15, 12.5, 0)
+    wallMesh4.rotation.y = Math.PI/2
+    room.add(wallMesh4)
+
+    //Room lights
+    let roomSpotLightWall1 = new THREE.SpotLight(0xffffff, 0.5)
+    roomSpotLightWall1.position.set(0, 20, 0)
+    roomSpotLightWall1.target = wallMesh1
+    roomSpotLightWall1.penumbra = 1
+    room.add(roomSpotLightWall1)
+
+    let roomSpotLightWall2 = new THREE.SpotLight(0xffffff, 0.5)
+    roomSpotLightWall2.position.set(0, 20, 0)
+    roomSpotLightWall2.target = wallMesh2
+    roomSpotLightWall2.penumbra = 1
+    room.add(roomSpotLightWall2)
+
+    let roomSpotLightWall3 = new THREE.SpotLight(0xffffff, 0.5)
+    roomSpotLightWall3.position.set(0, 20, 0)
+    roomSpotLightWall3.target = wallMesh3
+    roomSpotLightWall3.penumbra = 1
+    room.add(roomSpotLightWall3)
+
+    let roomSpotLightWall4 = new THREE.SpotLight(0xffffff, 0.5)
+    roomSpotLightWall4.position.set(0, 20, 0)
+    roomSpotLightWall4.target = wallMesh4
+    roomSpotLightWall4.penumbra = 1
+    room.add(roomSpotLightWall4)
+
+    //DESK
+    let desk = new THREE.Object3D()
+    desk.position.set(0, 0, -5)
+    room.add(desk)
+
+    //Table
+    let table = new THREE.Object3D()
+    gltfLoader.load("../models/table/scene.gltf", function (gltf) {
+        table = gltf.scene
+        table.position.set(-5.5, 0, 13)
+        table.scale.multiplyScalar(10)
+        desk.add(table)
     }, undefined, function (error) {
         console.error(error)
     })
 
-    // Ground
-    let groundGeometry = new THREE.PlaneGeometry(50, 50, 10, 10)
-    let groundMaterial = new THREE.MeshStandardMaterial({
-        color: "grey"
-    });
-    let groundMesh = new THREE.Mesh(groundGeometry, groundMaterial)
-    groundMesh.rotation.x = -Math.PI / 2
-    groundMesh.receiveShadow = true
-    room.add(groundMesh)
-
-    //Wall1
-    let wallGeometry1 = new THREE.BoxGeometry(51, 25, 1, 10, 10)
-    let wallMaterial1 = new THREE.MeshStandardMaterial({
-        color: "grey"
+    //Chair
+    let chair = new THREE.Object3D()
+    gltfLoader.load("../models/chair/scene.gltf", function (gltf) {
+        chair = gltf.scene
+        chair.rotation.y = Math.PI
+        chair.position.set(-2, 0.5, 8)
+        chair.scale.multiplyScalar(10)
+        desk.add(chair)
+    }, undefined, function (error) {
+        console.log(error)
     })
-    let wallMesh1 = new THREE.Mesh(wallGeometry1, wallMaterial1)
-    wallMesh1.position.set(0, 12.5, -25)
-    wallMesh1.receiveShadow = true
-    room.add(wallMesh1)
 
-    //Wall2
-    let wallGeometry2 = new THREE.BoxGeometry(50, 25, 1, 10, 10)
-    let wallMaterial2 = new THREE.MeshStandardMaterial({
-        color: "grey"
+    //Laptop
+    let laptop = new THREE.Object3D()
+    gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
+        laptop = gltf.scene
+        laptop.rotation.y = - Math.PI / 2
+        laptop.position.set(-2, 7.43, 0.3)
+        desk.add(laptop)
+    }, undefined, function (error) {
+        console.error(error)
     })
-    let wallMesh2 = new THREE.Mesh(wallGeometry2, wallMaterial2)
-    wallMesh2.position.set(25, 12.5, 0)
-    wallMesh2.rotation.y = Math.PI/2
-    wallMesh2.receiveShadow = true
-    room.add(wallMesh2)
 
-    //Wall3
-    let wallGeometry3 = new THREE.BoxGeometry(51, 25, 1, 10, 10)
-    let wallMaterial3 = new THREE.MeshStandardMaterial({
-        color: "grey"
-    })
-    let wallMesh3 = new THREE.Mesh(wallGeometry3, wallMaterial3)
-    wallMesh3.position.set(0, 12.5, 25)
-    wallMesh3.receiveShadow = true
-    room.add(wallMesh3)
+    //Desk lights
+    let deskSpotLight1 = new THREE.SpotLight(0xffffff, 5)
+    deskSpotLight1.position.set(-2, 20, 0)
+    deskSpotLight1.target = laptop
+    deskSpotLight1.penumbra = 0
+    deskSpotLight1.distance = 20
+    desk.add(deskSpotLight1)
 
-    //Wall4
-    let wallGeometry4 = new THREE.BoxGeometry(50, 25, 1, 10, 10)
-    let wallMaterial4 = new THREE.MeshStandardMaterial({
-        color: "grey"
-    })
-    let wallMesh4 = new THREE.Mesh(wallGeometry4, wallMaterial4)
-    wallMesh4.position.set(-25, 12.5, 0)
-    wallMesh4.rotation.y = Math.PI/2
-    wallMesh4.receiveShadow = true
-    room.add(wallMesh4)
+    let deskSpotLight2 = new THREE.SpotLight(0xffffff, 2)
+    deskSpotLight2.position.set(-10, 8, 0)
+    deskSpotLight2.target = laptop
+    deskSpotLight2.penumbra = 1
+    deskSpotLight2.distance = 10
+    desk.add(deskSpotLight2)
 
-    //Lights
-    let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.3)
-    directionalLight1.position.set(0, 20, 0)
-    directionalLight1.castShadow = true
-    room.add(directionalLight1)
-
-    let spotLight1 = new THREE.SpotLight(0xffffff, 1)
-    spotLight1.position.set(0, 12.5, 0)
-    spotLight1.target = wallMesh1
-    spotLight1.castShadow = true
-    spotLight1.penumbra = 1
-    // spotLight1.angle = Math.PI/2
-    room.add(spotLight1)
-
-    let spotLight2 = new THREE.SpotLight(0xffffff, 1)
-    spotLight2.position.set(0, 12.5, 0)
-    spotLight2.target = wallMesh2
-    spotLight2.castShadow = true
-    spotLight2.penumbra = 1
-    // spotLight2.angle = Math.PI/2
-    room.add(spotLight2)
-
-    let spotLight3 = new THREE.SpotLight(0xffffff, 1)
-    spotLight3.position.set(0, 12.5, 0)
-    spotLight3.target = wallMesh3
-    spotLight3.castShadow = true
-    spotLight3.penumbra = 1
-    // spotLight3.angle = Math.PI/2
-    room.add(spotLight3)
-
-    let spotLight4 = new THREE.SpotLight(0xffffff, 1)
-    spotLight4.position.set(0, 12.5, 0)
-    spotLight4.target = wallMesh4
-    spotLight4.castShadow = true
-    spotLight4.penumbra = 1
-    // spotLight4.angle = Math.PI/2
-    room.add(spotLight4)
-
-    room.add(new AxesHelper(50))
-
-    //Room
-    scene.add(room)
+    let deskSpotLight3 = new THREE.SpotLight(0xffffff, 2)
+    deskSpotLight3.position.set(8, 8, 0)
+    deskSpotLight3.target = laptop
+    deskSpotLight3.penumbra = 1
+    deskSpotLight3.distance = 10
+    desk.add(deskSpotLight3)
 }
 
 function update() {

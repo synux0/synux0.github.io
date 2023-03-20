@@ -1,0 +1,11 @@
+Model Information:
+* title:	Desk
+* source:	https://sketchfab.com/3d-models/desk-95fe0ea09f97465fb5183573b44f2b7b
+* author:	James (https://sketchfab.com/James_999)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Desk" (https://sketchfab.com/3d-models/desk-95fe0ea09f97465fb5183573b44f2b7b) by James (https://sketchfab.com/James_999) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
