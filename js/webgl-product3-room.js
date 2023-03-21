@@ -236,7 +236,7 @@ function load() {
 
     //Desk lights
     let deskSpotLight1 = new THREE.SpotLight(0xffffff, 5)
-    deskSpotLight1.position.set(-2, 15, 3)
+    deskSpotLight1.position.set(-5, 15, 3)
     deskSpotLight1.target = desktop
     deskSpotLight1.penumbra = 1
     deskSpotLight1.distance = 20
