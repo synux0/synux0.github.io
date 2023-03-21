@@ -21,7 +21,7 @@ function init() {
     renderer.gammaInput = true
     renderer.gammaOutput = true
     renderer.shadowMap.enabled = false
-    document.getElementById("webgl-product1-room").appendChild(renderer.domElement)
+    document.getElementById("webgl-product2-room").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
         //Update renderer
@@ -225,10 +225,9 @@ function load() {
 
     //Laptop
     let laptop = new THREE.Object3D()
-    gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
+    gltfLoader.load("../models/futuristic_laptop/scene.gltf", function (gltf) {
         laptop = gltf.scene
-        laptop.rotation.y = - Math.PI / 2
-        laptop.position.set(-2, 7.43, 0.3)
+        laptop.position.set(-2, 7.43, -0.5)
         desk.add(laptop)
     }, undefined, function (error) {
         console.error(error)

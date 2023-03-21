@@ -21,7 +21,7 @@ function init() {
     renderer.gammaInput = true
     renderer.gammaOutput = true
     renderer.shadowMap.enabled = false
-    document.getElementById("webgl-product1-room").appendChild(renderer.domElement)
+    document.getElementById("webgl-product3-room").appendChild(renderer.domElement)
 
     window.addEventListener("resize", function updateAspectRatio() {
         //Update renderer
@@ -38,7 +38,7 @@ function init() {
 
     //Camera
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200)
-    camera.position.set(-8, 10, 13);
+    camera.position.set(-8, 10, 15);
     camera.lookAt(new THREE.Vector3(-8, 10, 5))
     scene.add(camera)
 
@@ -223,13 +223,13 @@ function load() {
         console.log(error)
     })
 
-    //Laptop
-    let laptop = new THREE.Object3D()
-    gltfLoader.load("../models/gaming_laptop/scene.gltf", function (gltf) {
-        laptop = gltf.scene
-        laptop.rotation.y = - Math.PI / 2
-        laptop.position.set(-2, 7.43, 0.3)
-        desk.add(laptop)
+    //Desktop
+    let desktop = new THREE.Object3D()
+    gltfLoader.load("../models/gaming_desktop/scene.gltf", function (gltf) {
+        desktop = gltf.scene
+        desktop.position.set(-2, 10.1, 0)
+        desktop.scale.multiplyScalar(9)
+        desk.add(desktop)
     }, undefined, function (error) {
         console.error(error)
     })
@@ -237,21 +237,21 @@ function load() {
     //Desk lights
     let deskSpotLight1 = new THREE.SpotLight(0xffffff, 5)
     deskSpotLight1.position.set(-2, 15, 3)
-    deskSpotLight1.target = laptop
+    deskSpotLight1.target = desktop
     deskSpotLight1.penumbra = 1
     deskSpotLight1.distance = 20
     desk.add(deskSpotLight1)
 
     let deskSpotLight2 = new THREE.SpotLight(0xffffff, 2)
     deskSpotLight2.position.set(-10, 8, 0)
-    deskSpotLight2.target = laptop
+    deskSpotLight2.target = desktop
     deskSpotLight2.penumbra = 1
     deskSpotLight2.distance = 10
     desk.add(deskSpotLight2)
 
     let deskSpotLight3 = new THREE.SpotLight(0xffffff, 2)
     deskSpotLight3.position.set(8, 8, 0)
-    deskSpotLight3.target = laptop
+    deskSpotLight3.target = desktop
     deskSpotLight3.penumbra = 1
     deskSpotLight3.distance = 10
     desk.add(deskSpotLight3)
