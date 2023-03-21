@@ -171,7 +171,7 @@ function load() {
     })
 
     //Room lights
-    let roomSpotLightWall1 = new THREE.SpotLight(0x9400FF, 1)
+    let roomSpotLightWall1 = new THREE.SpotLight(0xD0140E, 1.5)
     roomSpotLightWall1.position.set(0, 20, 0)
     roomSpotLightWall1.target = wallMesh1
     roomSpotLightWall1.penumbra = 1
@@ -183,13 +183,13 @@ function load() {
     roomSpotLightWall2.penumbra = 1
     room.add(roomSpotLightWall2)
 
-    let roomSpotLightWall3 = new THREE.SpotLight(0x9400FF, 1)
-    roomSpotLightWall3.position.set(0, 20, 5)
+    let roomSpotLightWall3 = new THREE.SpotLight(0xD0140E, 1)
+    roomSpotLightWall3.position.set(0, 20, 0)
     roomSpotLightWall3.target = wallMesh3
     roomSpotLightWall3.penumbra = 1
     room.add(roomSpotLightWall3)
 
-    let roomSpotLightWall4 = new THREE.SpotLight(0x0E0AF8, 1.5)
+    let roomSpotLightWall4 = new THREE.SpotLight(0x9400FF, 1.5)
     roomSpotLightWall4.position.set(10, 20, 0)
     roomSpotLightWall4.target = wallMesh4
     roomSpotLightWall4.penumbra = 1
